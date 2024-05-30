@@ -1,0 +1,3 @@
+[submodule "src/submodules"]
+	path = src/submodules
+	url = git@github.com:moshiurse/insidemap-modules.git
