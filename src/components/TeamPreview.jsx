@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Jersey from '../submodules/assets/icons/Jersey';
+import { useSelector } from 'react-redux';
 
 TeamPreview.propTypes = {
     formation: PropTypes.string,
@@ -7,30 +8,31 @@ TeamPreview.propTypes = {
 
 export default function TeamPreview(props) {
     const {formation} = props;
-    console.log(formation);
+    const teamData = useSelector(state => state.team);
+    console.log(teamData);
     let teamMarkup = null;
 
     const fourThreeThree = () => {
         return (
             <>
-                <div className='flex justify-center gap-36 h-28'>
-                        <Jersey className='self-end' position='attack'/>
-                        <Jersey position='attack'/>
-                        <Jersey className='self-end' position='attack'/>
+                <div className='flex justify-center gap-5 h-28'>
+                        <Jersey className='self-end' position='a' index={0}/>
+                        <Jersey position='a' index={1}/>
+                        <Jersey className='self-end' position='a' index={2}/>
                 </div>
                 <div className='mt-20 h-28 flex justify-center gap-10'>
-                        <Jersey position='mid'/>
-                        <Jersey position='mid'/>
-                        <Jersey position='mid'/>
+                        <Jersey position='m' index={3}/>
+                        <Jersey position='m' index={4}/>
+                        <Jersey position='m' index={5}/>
                 </div>
-                <div className='h-40 flex justify-center gap-28'>
-                        <Jersey  position='defence'/>
-                        <Jersey  position='defence'/>
-                        <Jersey  position='defence'/>
-                        <Jersey  position='defence'/>
+                <div className='h-40 flex justify-center gap-5'>
+                        <Jersey  position='d' index={6}/>
+                        <Jersey  position='d' index={7}/>
+                        <Jersey  position='d' index={8}/>
+                        <Jersey  position='d' index={9}/>
                 </div>
                 <div className='flex  h-20 justify-center items-center'>
-                        <Jersey position='goalkeeper'/>
+                        <Jersey position='g' index={10}/>
                 </div>
             </>
         )
@@ -40,23 +42,23 @@ export default function TeamPreview(props) {
         return (
             <>
                 <div className='flex justify-center gap-36 h-20'>
-                        <Jersey className='self-center'/>
-                        <Jersey className='self-center'/>
+                        <Jersey className='self-center' position='a' index={0}/>
+                        <Jersey className='self-center' position='a' index={1}/>
                 </div>
                 <div className='mt-20 h-28 flex justify-center gap-10'>
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
+                        <Jersey  position='m' index={2}/>
+                        <Jersey  position='m' index={3}/>
+                        <Jersey  position='m' index={4}/>
+                        <Jersey  position='m' index={5}/>
                 </div>
                 <div className='h-40 flex justify-center gap-28'>
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
+                        <Jersey  position='d' index={6}/>
+                        <Jersey  position='d' index={7}/>
+                        <Jersey  position='d' index={8}/>
+                        <Jersey  position='d' index={9}/>
                 </div>
                 <div className='flex  h-20 justify-center items-center'>
-                        <Jersey />
+                        <Jersey  position='g' index={10}/>
                 </div>
             </>
         )
@@ -65,24 +67,24 @@ export default function TeamPreview(props) {
     const threeFourThree = () => {
         return (
             <>
-                <div className='flex justify-center gap-36 h-28'>
-                        <Jersey className='self-end'/>
-                        <Jersey />
-                        <Jersey className='self-end'/>
+                <div className='flex justify-center gap-5 h-28'>
+                        <Jersey className='self-end' position='a' index={0}/>
+                        <Jersey position='a' index={1}/>
+                        <Jersey className='self-end' position='a' index={2}/>
                 </div>
-                <div className='mt-20 h-28 flex justify-center gap-28'>
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
+                <div className='mt-20 h-28 flex justify-center gap-5'>
+                        <Jersey position='m' index={3}/>
+                        <Jersey position='m' index={4}/>
+                        <Jersey position='m' index={5}/>
+                        <Jersey position='m' index={6}/>
                 </div>
-                <div className='h-40 flex justify-center gap-16'>
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
+                <div className='h-40 flex justify-center gap-6'>
+                        <Jersey position='d' index={7}/>
+                        <Jersey position='d' index={8}/>
+                        <Jersey position='d' index={9}/>
                 </div>
-                <div className='flex  h-20 justify-center items-center'>
-                        <Jersey />
+                <div className='flex h-20 justify-center items-center'>
+                        <Jersey position='g' index={10}/>
                 </div>
             </>
         )
@@ -90,24 +92,24 @@ export default function TeamPreview(props) {
     const fiveTwoThree = () => {
         return (
             <>
-                <div className='flex justify-center gap-36 h-20'>
-                        <Jersey className='self-center'/>
-                        <Jersey />
-                        <Jersey className='self-center'/>
+                <div className='flex justify-center gap-5 h-20'>
+                        <Jersey className='self-center' position='a' index={0}/>
+                        <Jersey position='a' index={1} />
+                        <Jersey className='self-center' position='a' index={2}/>
                 </div>
                 <div className='mt-20 h-28 flex justify-center gap-28'>
-                        <Jersey />
-                        <Jersey />
+                        <Jersey position='m' index={3}/>
+                        <Jersey position='m' index={4}/>
                 </div>
-                <div className='h-40 flex justify-center gap-28'>
-                        <Jersey />
-                        <Jersey className='self-center'/>
-                        <Jersey className='self-center'/>
-                        <Jersey className='self-center'/>
-                        <Jersey />
+                <div className='h-40 flex justify-center gap-5'>
+                        <Jersey position='d' index={5}/>
+                        <Jersey className='self-center' position='d' index={6}/>
+                        <Jersey className='self-center' position='d' index={7}/>
+                        <Jersey className='self-center' position='d' index={8}/>
+                        <Jersey position='d' index={9}/> 
                 </div>
                 <div className='flex  h-20 justify-center items-center'>
-                        <Jersey />
+                        <Jersey position='g' index={10}/>
                 </div>
             </>
         )
@@ -115,24 +117,24 @@ export default function TeamPreview(props) {
     const fiveThreeTwo = () => {
         return (
             <>
-                <div className='flex justify-center gap-36 h-20'>
-                        <Jersey className='self-center'/>
-                        <Jersey className='self-center'/>
+                <div className='flex justify-center gap-5 h-20'>
+                        <Jersey className='self-center' position='a' index={0}/>
+                        <Jersey className='self-center' position='a' index={1}/>
                 </div>
-                <div className='mt-20 h-28 flex justify-center gap-28'>
-                        <Jersey />
-                        <Jersey />
-                        <Jersey />
+                <div className='mt-20 h-28 flex justify-center gap-3'>
+                        <Jersey position='m' index={2}/>
+                        <Jersey position='m' index={3}/>
+                        <Jersey position='m' index={4}/>
                 </div>
-                <div className='h-40 flex justify-center gap-16'>
-                        <Jersey />
-                        <Jersey className='self-center'/>
-                        <Jersey className='self-center'/>
-                        <Jersey className='self-center'/>
-                        <Jersey />
+                <div className='h-40 flex justify-center gap-1'>
+                        <Jersey position='d' index={5}/>
+                        <Jersey className='self-center' position='d' index={6}/>
+                        <Jersey className='self-center' position='d' index={7}/>
+                        <Jersey className='self-center' position='d' index={8}/>
+                        <Jersey position='d' index={9}/>
                 </div>
                 <div className='flex  h-20 justify-center items-center'>
-                        <Jersey />
+                        <Jersey position='g' index={10}/>
                 </div>
             </>
         )
@@ -161,7 +163,7 @@ export default function TeamPreview(props) {
     
   return (
     <>
-        <div className=' w-screen flex flex-col border-2 border-green-400 min-h-[70vh] p-1 m-1 bg-green-100'>
+        <div className='w-full flex flex-col border border-green-400 min-h-[70vh] p-1 m-1 bg-green-100'>
             {teamMarkup}
         </div>
     </>

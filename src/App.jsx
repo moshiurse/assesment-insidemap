@@ -10,15 +10,15 @@ function App() {
 
     return (
         <>
-            <Navbar onChange={setPage}/>
+            <Navbar onChange={setPage} />
             {
                 page == 'list' &&
-                <PlayerTab />
+                <PlayerTab search/>
             }
 
             {
                 page == 'team' &&
-                <CreateTeam />
+                <CreateTeam/>
             }
         </>
     )

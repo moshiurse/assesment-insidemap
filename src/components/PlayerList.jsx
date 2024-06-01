@@ -1,7 +1,8 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import axios from "../submodules/utils/axios";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Spa } from '@mui/icons-material';
 
 PlayerList.propTypes = {
     children: PropTypes.node,
@@ -12,7 +13,7 @@ PlayerList.propTypes = {
 
 export default function PlayerList(props) {
     const { value, index, list, ...other } = props;
-    console.log(list, 'LLLLLLLLLLLLLL');
+    const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     return (
         <div
@@ -27,16 +28,26 @@ export default function PlayerList(props) {
                     {
                         list &&
                         list?.map(l => (
-                            <Card key={l.id} sx={{ minWidth: 275, marginBottom: 1, padding: 1, cursor: 'pointer' }}>
+                            <div key={l.id} onClick={() => {console.log(l); setSelectedPlayer(l.id)}}>
+                            <Card  sx={{ minWidth: 275, marginBottom: 1, padding: 1, cursor: 'pointer' }}>
                                 <div className='flex gap-2 items-center'>
-                                    <img src={l.photo} alt=""  className='h-20 w-24 rounded border-2'/>
+                                    <img src={l.playerImage} alt=""  className='h-20 w-24 rounded border-2'/>
                                     <div className='flex flex-col'>
-                                        <span className='font-semibold'>{l.name}</span>
-                                        <span className='font-semibold'>Country: {l.nationality}</span>
+                                        <span className='font-semibold'>{l.playerName}</span>
+                                        <img className='h-7 w-12' src={l?.nationImage} alt="" />
                                     </div>
-                                    <span className='font-semibold'>Club: {l?.team?.name}</span>
+                                    <span className='font-semibold'>Club: {l?.club}</span>
                                 </div>
+                                {
+                                    selectedPlayer == l.id &&
+                                    <div className='flex flex-col mt-2'>
+                                        <span>First Name: {l.firstName}</span>
+                                        <span>Last Name: {l.lastName}</span>
+                                        <span>position: {l.positions?.first?.name}</span>
+                                    </div>
+                                }
                             </Card>
+                            </div>
                         ))
                         
                     }

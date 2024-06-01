@@ -1,6 +1,8 @@
 import {configureStore } from "@reduxjs/toolkit";
 
 import playerReducer from "./reducers/playerReducer";
+import filterReducer from "./reducers/filterReducer";
+import teamReducer from "./reducers/teamReducer";
 
 const loggingMiddleware = (store) => (next) => (action) => {
     // console.log('Previous State:', store.getState());
@@ -13,6 +15,8 @@ const loggingMiddleware = (store) => (next) => (action) => {
 export default configureStore({
     reducer: {
         players: playerReducer,
+        filter: filterReducer,
+        team: teamReducer
     },
     devTools: true,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggingMiddleware)
