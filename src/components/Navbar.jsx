@@ -1,23 +1,17 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import logo from "../submodules/assets/images/logo.png";
-import {Groups } from '@mui/icons-material';
+import { Groups } from '@mui/icons-material';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setfilters } from '../store/reducers/filterReducer';
+import { setPlayers } from '../store/reducers/playerReducer';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -28,7 +22,7 @@ const Search = styled('div')(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: '100%',
+  width: '20%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
     width: 'auto',
@@ -60,21 +54,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 Navbar.propTypes = {
-    onChange: PropTypes.func
+  onChange: PropTypes.func
 }
 
-export default function Navbar({onChange}) {
+export default function Navbar({ onChange }) {
+  const dispatch = useDispatch();
 
-    const handleSearch = (e) => {
-        console.log(e.target.value);
-        onChange('list');
-    }
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      const context = this;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+  }
+
+  
+  const handleSearch = (e) => {
+      onChange('list');
+      dispatch(setPlayers([]));
+      dispatch(setfilters({type: 'query', value: e}));
+      dispatch(setfilters({type: 'search_type', value: 'players'}));
+      dispatch(setfilters({type: 'page_number', value: 1}));
+  }
+    
+  const debouncedHandleSearch = useCallback(debounce(handleSearch, 600), []);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    // <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <img src={logo} width={100} height={50}/>
+          <img src={logo} width={100} height={50} className='cursor-pointer' onClick={() => onChange('list')}/>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -82,7 +92,7 @@ export default function Navbar({onChange}) {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(e) => handleSearch(e)}
+              onChange={(e) => debouncedHandleSearch(e.target.value)}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
@@ -92,11 +102,11 @@ export default function Navbar({onChange}) {
               color="inherit"
               onClick={() => onChange('team')}
             >
-                <Groups />
+              <Groups />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-    </Box>
+    // </Box>
   );
 }
