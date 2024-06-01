@@ -23,8 +23,13 @@ The Api I am working with are version **v1** , After signin It automatically ass
 
 ![image](https://github.com/moshiurse/assesment-insidemap/assets/15215020/04e1cecd-cd4d-4a87-81a1-1d1e3e9aa663)
 
-**If more than two country or club remains in time**
+**If more than two country or club remains in team**
 ![image](https://github.com/moshiurse/assesment-insidemap/assets/15215020/d6d10c6d-0024-49bd-831a-808d06e78028)
 
-****
+**I might make team formation more reusable, In the meantime I lost almost 6-7 hours code by mistakenly using rebasing, though I recovered then**
 
+**I completed 95% feature, For Api inconsistency in my end filtering data couldn't be done**
+
+**I might use /players/profile for each player but I have limited api usages, thats why i did not use this**
+
+**Infinity scroll has issue(debug a lot) that is why I used click based paging is there by clicking**
