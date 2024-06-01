@@ -85,16 +85,16 @@ export default function PlayerTab() {
             setFetching(false);
         }else{
             setHasMore(true);
+            let data2 = await getPlayerList(filters.page_number+1);
+            allData = [...allData, ...data2.data];
+            if((playerList.length + allData.length) >= data2.count){
+                setHasMore(false);
+                setFetching(false);
+            }else{
+                setHasMore(true);
+            }
         }
-        let data2 = await getPlayerList(filters.page_number+1);
-        allData = [...allData, ...data2.data];
-        if((playerList.length + allData.length) >= data2.count){
-            setHasMore(false);
-            setFetching(false);
-        }else{
-            setHasMore(true);
-        }
-        
+       
         let ids = allData.map(d => d.id).join(',');
         getShortInfo(ids, allData);
     };
